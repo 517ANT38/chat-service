@@ -31,5 +31,6 @@ public class Message {
     @JoinColumn(name = "chat_id", referencedColumnName = "id")
     private Chat chat;
     private String txt;
+    private MessageStatus status;
     private LocalDateTime sendAt;
 }
