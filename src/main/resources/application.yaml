@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:6101/chat_service
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  public_routes: /login,/actuator/**/swagger-ui/**,/swagger-resources/**,/v3/api-docs/**,/swagger-ui.html,/webjars/**  
