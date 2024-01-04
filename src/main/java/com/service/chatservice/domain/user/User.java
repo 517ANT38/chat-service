@@ -9,6 +9,7 @@ import org.hibernate.annotations.Cascade;
 import com.service.chatservice.domain.chat.Chat;
 import com.service.chatservice.domain.message.Message;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -31,6 +32,7 @@ import static org.hibernate.annotations.CascadeType.ALL;
 public class User {
     @Id
     private Long id;
+    @Column(unique = true)
     private String username;
     private String name;
     private String password;
