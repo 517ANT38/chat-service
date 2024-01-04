@@ -6,6 +6,7 @@ import java.util.Set;
 import com.service.chatservice.domain.message.Message;
 import com.service.chatservice.domain.user.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -26,6 +27,7 @@ public class Chat {
     
     @Id
     private Long id;
+    @Column(unique = true)
     private String name;
     private String ref;
     private boolean privateChat;
