@@ -6,6 +6,8 @@ import com.service.chatservice.domain.chat.Chat;
 import com.service.chatservice.domain.user.User;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
