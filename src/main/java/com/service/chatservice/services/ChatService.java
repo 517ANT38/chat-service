@@ -24,7 +24,7 @@ public class ChatService {
     public Chat newChat(Chat chat){
         
         if(chatRepo.existsByName(chat.getName())){
-            throw new ApiException("A chat with this name" + chat.getName() + "exists", "BAD_REQUEST");
+            throw new ApiException("A chat with this name" + chat.getName() + "exists");
         }
             
         return chatRepo.save(chat);

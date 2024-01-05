@@ -20,13 +20,13 @@ public class UserService {
     public User newUser(User user){
         
         if(userRepo.existsByUsername(user.getUsername())){
-            throw new ApiException("A user with this username" + user.getUsername() + "exists", "BAD_REQUEST");
+            throw new ApiException("A user with this username" + user.getUsername() + "exists");
         }
             
         return userRepo.save(user);
     }
 
-    public User findByName(String  username){
+    public User findByUsername(String  username){
         return userRepo.findByUsername(username)
             .orElseThrow(() -> new NotFoundException("User not found with username=" + username));
     }
