@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.service.chatservice.app.ApiException;
@@ -40,6 +41,7 @@ public class ChatService {
             .orElseThrow(() -> new NotFoundException("Chat not found with id=" + id));
     }
 
+    @PreAuthorize("ADMIN")
     public List<Chat> findAll(){
         return chatRepo.findAll();
     }

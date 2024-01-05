@@ -2,6 +2,7 @@ package com.service.chatservice.services;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,7 @@ public class UserService {
             .orElseThrow(() -> new NotFoundException("User not found with id=" + id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public List<User> findAll(){
         return userRepo.findAll();
     }
