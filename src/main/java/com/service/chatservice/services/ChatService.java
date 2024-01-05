@@ -57,4 +57,18 @@ public class ChatService {
         user.setChats(setUser);
         userRepo.save(user);
     }
+
+    public void deleteUserIntoChat(long chatId,long userId){
+        var chat = chatRepo.findById(chatId)
+            .orElseThrow(() -> new NotFoundException("Chat not found with id=" + chatId));
+        var user = userRepo.findById(userId)
+            .orElseThrow(() -> new NotFoundException("User not found with id=" + userId));
+        var setChat = Optional.ofNullable(chat.getUsers()).orElse(new HashSet<>());
+        setChat.remove(user);
+        chat.setUsers(setChat);
+        var setUser  = Optional.ofNullable(user.getChats()).orElse(new HashSet<>());
+        setUser.remove(chat);
+        user.setChats(setUser);
+        userRepo.save(user);
+    }
 }
