@@ -9,6 +9,6 @@ spring:
     hibernate:
       ddl-auto: update
 jwt:
-  secret: oZr417KU7ipPoCCGY0-cPcGu0PpT1_aG9o-BD1KcnN3BpZPrLcNKgcF9QXXJwrY50Whd7Ij51t45oD0ctn-Vo032uFoMtnNzvzpOFq      
+  secret: oZr417KU7ipPoCCGY0-cPcGu0PpT1_aG9o-BD1KcnN3BpZPrLcNKgcF9QXXJwrY50Whd7Ij51t45oD0ctn-Vo032uFoMtnNzvzpOFq
 app:
   public_routes: /login,/actuator/**,/swagger-ui/**,/swagger-resources/**,/v3/api-docs/**,/swagger-ui.html,/webjars/**
