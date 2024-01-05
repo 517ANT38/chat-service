@@ -18,9 +18,9 @@ public class OpenApiConfig {
             .components(new Components().addSecuritySchemes 
             ("Bearer Authentication", s)) 
            .info(new Info() 
-                    .title("Notes API") 
+                    .title("API for chat") 
                     .description(""" 
-                        Default users: login:admin,password:admin,role:ADMIN;  
+                        Default users: username:admin,password:admin,role:ADMIN;  
                     """) 
             ); 
     } 
