@@ -1,24 +1,19 @@
 package com.service.chatservice.controllers;
 
-import java.util.Set;
+import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.chatservice.domain.message.Message;
 import com.service.chatservice.domain.message.dto.MessageDto;
-import com.service.chatservice.domain.message.dto.NewMessageDto;
 import com.service.chatservice.domain.message.mapper.MapperMessage;
 import com.service.chatservice.services.MessageService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -29,22 +24,18 @@ import lombok.RequiredArgsConstructor;
 public class MessageController {
     private final MessageService service;
     private final MapperMessage mapperMessage;
-
-    @PostMapping("/new")
-    public ResponseEntity<MessageDto> save(@RequestBody NewMessageDto message){
-        return ResponseEntity.status(HttpStatus.CREATED).body(mapperMessage
-            .map(service.save(mapperMessage.map(message))));
-    }    
+ 
 
     @GetMapping("/{id}")
-    public Message findById(@PathVariable("id") long id){
-        return service.findById(id);
+    public  ResponseEntity<MessageDto> findById(@PathVariable("id") long id){
+        return ResponseEntity.ok(mapperMessage.map(service.findById(id)));
                
     }
 
     @GetMapping("/chat/{chatId}")
-    public Set<Message> findByChatId(@PathVariable("chatId") long chatId){
-        return service.findByChatId(chatId); 
+    public ResponseEntity<List<MessageDto>> findByChatId(@PathVariable("chatId") long chatId){
+        return ResponseEntity.ok(service.findByChatId(chatId)
+            .stream().map(mapperMessage::map).toList()); 
     }
 
 }
