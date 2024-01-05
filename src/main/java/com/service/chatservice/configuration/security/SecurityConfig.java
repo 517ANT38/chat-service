@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .requestMatchers(publicRoutes)
                 .permitAll()  
                 .requestMatchers("/**")
-                .authenticated()         
+                .authenticated()                                      
                 .and()
                 .authenticationProvider(provider)
                 .addFilterAfter(jwtFilter,UsernamePasswordAuthenticationFilter.class);

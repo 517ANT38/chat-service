@@ -23,7 +23,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import static org.hibernate.annotations.CascadeType.ALL;
 
-@Table
+@Table(name = "UserForChat")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,9 +42,9 @@ public class User {
     private boolean enabled;
     @ManyToMany
     @JoinTable(
-        name="chat_user",
-        joinColumns = @JoinColumn(name = "id_chat"),
-        inverseJoinColumns = @JoinColumn(name = "id_user")
+        name="chatUser",
+        joinColumns = @JoinColumn(name = "idChat"),
+        inverseJoinColumns = @JoinColumn(name = "idUser")
     )    
     @Cascade({ALL})
     private Set<Chat> chats;

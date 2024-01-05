@@ -14,10 +14,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/message")
 @RequiredArgsConstructor
 public class MessageController {
-    
     private final MessageService service;
     private final MapperMessage mapperMessage;
-
-
-  
 }

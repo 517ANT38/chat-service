@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  db_app_chat:
+    image: postgres 
+    container_name: db_app_chat   
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: chat_service
+    command: ["postgres", "-c","port=6101"]
+    ports:
+      - "6101:6101"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "root"
+    ports:
+      - "5090:80"
+    depends_on:
+      - db_app_chat
+      
