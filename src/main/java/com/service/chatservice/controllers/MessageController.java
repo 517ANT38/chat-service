@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.chatservice.app.NotFoundException;
 import com.service.chatservice.domain.message.Message;
-import com.service.chatservice.domain.message.MessageStatus;
 import com.service.chatservice.domain.message.dto.MessageDto;
 import com.service.chatservice.domain.message.dto.NewMessageDto;
 import com.service.chatservice.domain.message.mapper.MapperMessage;
@@ -39,7 +37,7 @@ public class MessageController {
         return service.findById(id);
                
     }
-    
+
     @GetMapping("/chat/{chatId}")
     public Set<Message> findByChatId(@PathVariable("chatId") long chatId){
         return service.findByChatId(chatId); 
