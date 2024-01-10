@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.service.chatservice.domain.message.dto.IdMessage;
+import com.service.chatservice.domain.message.dto.ChatNotification;
 import com.service.chatservice.domain.message.dto.NewMessageDto;
 import com.service.chatservice.domain.message.mapper.MapperMessage;
 import com.service.chatservice.services.MessageService;
@@ -29,10 +29,18 @@ public class ChatMessageController {
     public void processMessage(@Payload NewMessageDto chatMessage) {
         
 
-        var saved = messageService.save(messageMapper.map(chatMessage));
+        var saved = messageService.save(
+            chatMessage.getUserId(),
+            chatMessage.getChatId(),
+            messageMapper.map(chatMessage)
+        );
         messagingTemplate.convertAndSendToUser(
                 saved.getChat().getName(),"/queue/messages",
-                new IdMessage(saved.getId()));
+                new ChatNotification(
+                    saved.getChat().getId(),
+                    saved.getUser().getId(),
+                    saved.getUser().getName()
+                ));
     }
 
 }

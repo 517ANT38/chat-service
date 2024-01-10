@@ -36,7 +36,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResultDto> logIn(@RequestBody AuthDto aDto){
         
-        var authenticationToken = new UsernamePasswordAuthenticationToken(aDto.getUsername(),aDto.getPassword());
+        var authenticationToken = new UsernamePasswordAuthenticationToken(
+            aDto.getUsername(),
+            aDto.getPassword()
+        );
         
         aManager.authenticate(authenticationToken);
 
@@ -55,7 +58,7 @@ public class AuthController {
     @ExceptionHandler(BadCredentialsException.class)
     private ResponseEntity<ResponseError> handleException(BadCredentialsException ex){
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.UNAUTHORIZED)
                 .body(new ResponseError("Bad login or password",LocalDateTime.now().toString()));
     }
 

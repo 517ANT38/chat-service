@@ -33,7 +33,6 @@ public class UserService {
                 .role("ROLE_ADMIN")
                 .enabled(true)
                 .build());
-                System.out.println(user);
         }
     }
 

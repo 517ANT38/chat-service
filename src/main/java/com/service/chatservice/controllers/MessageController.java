@@ -17,7 +17,7 @@ import com.service.chatservice.services.MessageService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/message")
+@RequestMapping("/api/messages")
 @RequiredArgsConstructor
 @CrossOrigin(originPatterns = "*",
     methods = {RequestMethod.GET,RequestMethod.POST})
@@ -36,6 +36,10 @@ public class MessageController {
     public ResponseEntity<List<MessageDto>> findByChatId(@PathVariable("chatId") long chatId){
         return ResponseEntity.ok(service.findByChatId(chatId)
             .stream().map(mapperMessage::map).toList()); 
+    }
+    @GetMapping("/count/chat/{chatId}")
+    public ResponseEntity<Long> countNewMessage(@PathVariable("chatId") long chatId){
+        return ResponseEntity.ok(service.countNewMessage(chatId)); 
     }
 
 }
