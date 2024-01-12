@@ -26,7 +26,7 @@ public class UserService {
     @Transactional
     void defaultAdmin(){
         if(!userRepo.existsByUsername("admin")){
-            var user = userRepo.save(User.builder()
+            userRepo.save(User.builder()
                 .username("admin")
                 .name("admin")
                 .password(encoder.encode("admin"))
