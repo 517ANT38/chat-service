@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@Spring
+@SpringBootTest
 class ChatControllerTests {
 	@Test
 	void loadTest(){
